@@ -14,7 +14,7 @@
   <div align="center">
   	<h1>Estore登录</h1><hr>
   	<font color="red">${msg }</font>
-  	<form action="/LoginServlet" method="POST">
+  	<form action="${pageContext.request.contextPath}/LoginServlet" method="POST">
   		<table>
   			<tr>
   				<td>用户名:</td>

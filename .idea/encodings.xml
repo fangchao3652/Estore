@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="Encoding">
-    <file url="file://$PROJECT_DIR$/src/com/itheima/util/MD5Utils.java" charset="GBK" />
-    <file url="file://$PROJECT_DIR$/src/com/itheima/web/ValiImg.java" charset="GBK" />
+  <component name="Encoding" defaultCharsetForPropertiesFiles="UTF-8">
+    <file url="file://$PROJECT_DIR$/src/com/itheima/filter/AutologinFilter.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/com/itheima/filter/EncoderFilter.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/com/itheima/service/UserService.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/com/itheima/service/UserServiceImpl.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/com/itheima/util/DaoUtils.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/com/itheima/util/IOUtils.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/com/itheima/util/MD5Utils.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/com/itheima/web/RegisterServlet.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/com/itheima/web/ValiImg.java" charset="UTF-8" />
+    <file url="PROJECT" charset="UTF-8" />
   </component>
 </project>

@@ -28,7 +28,7 @@ public class EncoderFilter implements Filter {
         servletResponse.setContentType("text/html;charset=" + encode); // --解决响应乱码
         filterChain.doFilter(new MyHttpServletRequest((HttpServletRequest) servletRequest),
                 servletResponse);// --包装改造request中和获取请求参数相关的方法解决请求参数乱码
-
+        System.out.println("过滤器===========================================");
     }
 
     @Override

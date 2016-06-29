@@ -13,7 +13,7 @@
   	</c:if>
   	<c:if test="${sessionScope.user != null}">
   		欢迎回来,${sessionScope.user.username }
-  		<a href="/LogoutServlet">注销</a>
+  		<a href="${pageContext.request.contextPath}/LogoutServlet">注销</a>
   	</c:if>
   </body>
 </html>
