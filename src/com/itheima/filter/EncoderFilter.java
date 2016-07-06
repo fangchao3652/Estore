@@ -24,11 +24,12 @@ public class EncoderFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
-        servletRequest.setCharacterEncoding(encode);
+        System.out.println("过滤器===========================================");
+
+      servletResponse.setCharacterEncoding(encode);
         servletResponse.setContentType("text/html;charset=" + encode); // --解决响应乱码
         filterChain.doFilter(new MyHttpServletRequest((HttpServletRequest) servletRequest),
                 servletResponse);// --包装改造request中和获取请求参数相关的方法解决请求参数乱码
-        System.out.println("过滤器===========================================");
     }
 
     @Override
@@ -54,6 +55,7 @@ public class EncoderFilter implements Filter {
                 } else if (request.getMethod().equalsIgnoreCase("GET")) {// --如果是get提交,则应该手动编解码解决乱码
                     Map<String, String[]> map = request.getParameterMap();// 获取有乱码的map
                     if (isNotEncode) {// 只能在第一次解决乱码
+                        System.out.println("=================只能在第一次解决乱码==============");
                         for (Map.Entry<String, String[]> entry : map.entrySet()) {// 遍历map,解决所有值的乱码
                             String[] vs = entry.getValue();
                             for (int i = 0; i < vs.length; i++) {

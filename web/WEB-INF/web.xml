@@ -69,6 +69,39 @@
         <servlet-name>LogoutServlet</servlet-name>
         <url-pattern>/LogoutServlet</url-pattern>
     </servlet-mapping>
+
+    <!--//====================-->
+    <servlet>
+        <servlet-name>AddProdServlet</servlet-name>
+        <servlet-class>com.itheima.web.AddProdServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+
+        <servlet-name>AddProdServlet</servlet-name>
+        <url-pattern>/AddProdServlet</url-pattern>
+    </servlet-mapping>
+    <!--//===========-->
+    <servlet>
+        <servlet-name>ProdListServlet</servlet-name>
+        <servlet-class>com.itheima.web.ProdListServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+
+        <servlet-name>ProdListServlet</servlet-name>
+        <url-pattern>/ProdListServlet</url-pattern>
+    </servlet-mapping>
+
+    <!--//===========-->
+    <servlet>
+        <servlet-name>ImgServlet</servlet-name>
+        <servlet-class>com.itheima.web.ImgServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+
+
+        <servlet-name>ImgServlet</servlet-name>
+        <url-pattern>/ImgServlet</url-pattern>
+    </servlet-mapping>
     <!--首页-->
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>
