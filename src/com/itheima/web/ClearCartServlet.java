@@ -18,14 +18,14 @@ import java.util.Map;
 @WebServlet(name = "ClearCartServlet")
 public class ClearCartServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-          //2.获取购物车  清空
+        //2.获取购物车  清空
         Map<Product, Integer> cartmap = (Map<Product, Integer>) request.getSession().getAttribute("cartmap");
         cartmap.clear();
         //3.重定向到购物车
-        response.sendRedirect(request.getContextPath()+"/cart.jsp");
+        response.sendRedirect(request.getContextPath() + "/cart.jsp");
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-doPost(request, response);
+        doPost(request, response);
     }
 }

@@ -143,7 +143,7 @@
         <servlet-name>ChangeCartServlet</servlet-name>
         <url-pattern>/ChangeCartServlet</url-pattern>
     </servlet-mapping>
-      <!--//===========-->
+    <!--//===========-->
     <servlet>
         <servlet-name>ClearCartServlet</servlet-name>
         <servlet-class>com.itheima.web.ClearCartServlet</servlet-class>
@@ -151,6 +151,15 @@
     <servlet-mapping>
         <servlet-name>ClearCartServlet</servlet-name>
         <url-pattern>/ClearCartServlet</url-pattern>
+    </servlet-mapping>
+    <!--//===========-->
+    <servlet>
+        <servlet-name>AddOrderServlet</servlet-name>
+        <servlet-class>com.itheima.web.AddOrderServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AddOrderServlet</servlet-name>
+        <url-pattern>/AddOrderServlet</url-pattern>
     </servlet-mapping>
 
     <!--首页-->

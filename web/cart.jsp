@@ -26,7 +26,7 @@
 <div align="right">
     <a href="${pageContext.request.contextPath}/ProdListServlet">继续购物</a>
     <a href="${pageContext.request.contextPath}/ClearCartServlet">清空购物车</a>
-    <a href="#"><img src="${pageContext.request.contextPath}/img/gotoorder.bmp"/></a>
+    <a href="${pageContext.request.contextPath}/addOrder.jsp"><img src="${pageContext.request.contextPath}/img/gotoorder.bmp"/></a>
 </div>
 <c:if test="${empty sessionScope.cartmap}">
     <h2><a href="${pageContext.request.contextPath}/ProdListServlet">购物车是空的，请先去挑点东西吧</a></h2>
