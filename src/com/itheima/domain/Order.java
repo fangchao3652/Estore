@@ -2,6 +2,7 @@ package com.itheima.domain;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.List;
 
 /**
  * Created by Meiling on 2016/7/7.
@@ -13,6 +14,15 @@ public class Order implements Serializable{
     private int paystate;
     private Timestamp ordertime;
     private int user_id;
+    private List<OrderItem> list;
+
+    public List<OrderItem> getList() {
+        return list;
+    }
+
+    public void setList(List<OrderItem> list) {
+        this.list = list;
+    }
 
     public String getId() {
         return id;

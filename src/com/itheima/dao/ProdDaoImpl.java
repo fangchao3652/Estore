@@ -1,5 +1,6 @@
 package com.itheima.dao;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import org.apache.commons.dbutils.QueryRunner;
@@ -38,6 +39,21 @@ public class ProdDaoImpl implements ProdDao {
 		try{
 			QueryRunner runner = new QueryRunner(DaoUtils.getSource());
 			return runner.query(sql, new BeanHandler<Product>(Product.class),id);
+		}catch (Exception e) {
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
+	}
+//结算的时候 减去商品的数量
+	@Override
+	public void delPnum(String product_id, int buynum) {
+		String sql = " update products set pnum=pnum-? where id=? and pnum-?>=0";
+		try{
+			QueryRunner runner = new QueryRunner(DaoUtils.getSource());
+			int  count= runner.update(sql, buynum,product_id,buynum);
+			if(count<=0){
+				throw new SQLException();
+			}
 		}catch (Exception e) {
 			e.printStackTrace();
 			throw new RuntimeException(e);

@@ -24,4 +24,5 @@ public interface ProdDao {
 	 */
 	Product findProdById(String id);
 
+	void delPnum(String product_id, int buynum);
 }
