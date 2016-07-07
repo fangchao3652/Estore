@@ -6,6 +6,7 @@
   </head>
   <body>
   	<h1>Estore</h1><hr>
+
   	<c:if test="${sessionScope.user == null}">
   		欢迎光临,游客
   		<a href="${pageContext.request.contextPath}/regist.jsp">注册</a>

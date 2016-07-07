@@ -48,6 +48,7 @@
   <body>
   <div align="center" >
   	<h1>Estore注册</h1><hr>
+
   	<form action="${pageContext.request.contextPath}/RegistServlet" method="POST" onsubmit="return checkForm()">
   		<table>
   			<tr>

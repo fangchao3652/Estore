@@ -9,6 +9,12 @@
         <param-name>encode</param-name>
         <param-value>utf-8</param-value>
     </context-param>
+
+    <!--监听器配置-->
+    <listener>
+        <listener-class>com.itheima.listener.MySessionListener</listener-class>
+    </listener>
+
     <filter>
         <filter-name>EncoderFilter</filter-name>
         <filter-class>com.itheima.filter.EncoderFilter</filter-class>
@@ -97,11 +103,56 @@
         <servlet-class>com.itheima.web.ImgServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-
-
         <servlet-name>ImgServlet</servlet-name>
         <url-pattern>/ImgServlet</url-pattern>
     </servlet-mapping>
+    <!--//===========-->
+    <servlet>
+        <servlet-name>ProdInfoServlet</servlet-name>
+        <servlet-class>com.itheima.web.ProdInfoServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ProdInfoServlet</servlet-name>
+        <url-pattern>/ProdInfoServlet</url-pattern>
+    </servlet-mapping>
+
+    <!--//===========-->
+    <servlet>
+        <servlet-name>AddcartServlet</servlet-name>
+        <servlet-class>com.itheima.web.AddcartServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AddcartServlet</servlet-name>
+        <url-pattern>/AddcartServlet</url-pattern>
+    </servlet-mapping>
+    <!--//===========-->
+    <servlet>
+        <servlet-name>DelCartServlet</servlet-name>
+        <servlet-class>com.itheima.web.DelCartServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DelCartServlet</servlet-name>
+        <url-pattern>/DelCartServlet</url-pattern>
+    </servlet-mapping>
+    <!--//===========-->
+    <servlet>
+        <servlet-name>ChangeCartServlet</servlet-name>
+        <servlet-class>com.itheima.web.ChangeCartServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ChangeCartServlet</servlet-name>
+        <url-pattern>/ChangeCartServlet</url-pattern>
+    </servlet-mapping>
+      <!--//===========-->
+    <servlet>
+        <servlet-name>ClearCartServlet</servlet-name>
+        <servlet-class>com.itheima.web.ClearCartServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ClearCartServlet</servlet-name>
+        <url-pattern>/ClearCartServlet</url-pattern>
+    </servlet-mapping>
+
     <!--首页-->
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>
