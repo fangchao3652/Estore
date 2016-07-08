@@ -15,7 +15,7 @@ public class ProdInfoServlet extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        ProdService service = BasicFactory.getFactory().getInstance(ProdService.class);
+        ProdService service = BasicFactory.getFactory().getService(ProdService.class);
         //1.获取要查询的商品id
         String id = request.getParameter("id");
         //2.调用Service中的方法查询制定id的商品

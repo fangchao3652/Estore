@@ -20,7 +20,7 @@ import java.util.TreeMap;
 @WebServlet(name = "ChangeCartServlet")
 public class ChangeCartServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        ProdService service = BasicFactory.getFactory().getInstance(ProdService.class);
+        ProdService service = BasicFactory.getFactory().getService(ProdService.class);
         //1.获取要删除的id,根据id查找出商品
         String id = request.getParameter("id");
         Product prod = service.findProdById(id);

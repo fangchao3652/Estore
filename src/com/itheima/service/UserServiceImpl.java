@@ -15,28 +15,21 @@ import java.util.UUID;
  * Created by Meiling on 2016/6/25.
  */
 public class UserServiceImpl implements UserService {
-    private UserDao dao = BasicFactory.getFactory().getInstance(UserDao.class);
+    private UserDao dao = BasicFactory.getFactory().getDao(UserDao.class);
 
     @Override
     public void regist(User user) {
-        try {
-            Connection conn = null;
-            conn = DaoUtils.getConn();
-            conn.setAutoCommit(false);
-            //1.校验用户名是否已经存在
-            if (dao.findUserByName(user.getUsername(), conn) != null) {
-                throw new RuntimeException("用户名已经存在!!");
-            }
-            //2.调用dao中的方法添加用户到数据库
-            user.setRole("user");
-            user.setState(0);
-            user.setActivecode(UUID.randomUUID().toString());
-            dao.addUser(user,conn);
 
-            DbUtils.commitAndCloseQuietly(conn);
-        } catch (SQLException e) {
-            e.printStackTrace();
+        //1.校验用户名是否已经存在
+        if (dao.findUserByName(user.getUsername() ) != null) {
+            throw new RuntimeException("用户名已经存在!!");
         }
+        //2.调用dao中的方法添加用户到数据库
+        user.setRole("user");
+        user.setState(0);
+        user.setActivecode(UUID.randomUUID().toString());
+        dao.addUser(user );
+
 
     }
 

@@ -21,7 +21,7 @@ import java.net.URLEncoder;
 public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        UserService service = BasicFactory.getFactory().getInstance(UserService.class);
+        UserService service = BasicFactory.getFactory().getService(UserService.class);
         //1.获取用户名密码
         String username = request.getParameter("username");
         String password = MD5Utils.md5(request.getParameter("password"));

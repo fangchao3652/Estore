@@ -6,7 +6,7 @@ import com.itheima.domain.OrderItem;
 /**
  * Created by Meiling on 2016/7/7.
  */
-public interface OrderDao {
+public interface OrderDao  extends Dao{
     /**
      * 在订单表中插入记录
      * @param order

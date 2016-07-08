@@ -19,7 +19,7 @@ import java.io.IOException;
 @WebServlet(name = "RegisterServlet")
 public class RegisterServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        UserService service = BasicFactory.getFactory().getInstance(UserService.class);
+        UserService service = BasicFactory.getFactory().getService(UserService.class);
         try {
             //1.校验验证码
             String valistr1 = request.getParameter("valistr");

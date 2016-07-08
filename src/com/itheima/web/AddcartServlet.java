@@ -18,7 +18,7 @@ import java.util.Map;
 @WebServlet(name = "AddcartServlet")
 public class AddcartServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        ProdService service = BasicFactory.getFactory().getInstance(ProdService.class);
+        ProdService service = BasicFactory.getFactory().getService(ProdService.class);
 //1.根据id找出该商品
         String id = request.getParameter("id");
         Product pro = service.findProdById(id);

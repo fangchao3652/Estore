@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.itheima.domain.Product;
 
-public interface ProdDao {
+public interface ProdDao extends Dao{
 
 	/**
 	 * @param prod

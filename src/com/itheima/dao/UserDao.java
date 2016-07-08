@@ -2,15 +2,13 @@ package com.itheima.dao;
 
 import com.itheima.domain.User;
 
-import java.sql.Connection;
-
 /**
  * Created by Meiling on 2016/6/25.
  */
-public interface UserDao {
-    Object findUserByName(String username, Connection conn);
+public interface UserDao extends Dao {
+    Object findUserByName(String username);
 
-    void addUser(User user, Connection conn);
+    void addUser(User user);
 
     User finUserByNameAndPsw(String username, String password);
 }

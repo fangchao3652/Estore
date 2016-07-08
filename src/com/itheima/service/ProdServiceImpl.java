@@ -8,7 +8,7 @@ import com.itheima.domain.Product;
 import com.itheima.factory.BasicFactory;
 
 public class ProdServiceImpl implements ProdService {
-	ProdDao dao = BasicFactory.getFactory().getInstance(ProdDao.class);
+	ProdDao dao = BasicFactory.getFactory().getDao(ProdDao.class);
 	public void addProd(Product prod) {
 		prod.setId(UUID.randomUUID().toString());
 		dao.addProd(prod);

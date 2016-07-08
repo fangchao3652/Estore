@@ -28,7 +28,7 @@ import java.util.UUID;
 @WebServlet(name = "AddOrderServlet")
 public class AddOrderServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        OrderService service = BasicFactory.getFactory().getInstance(OrderService.class);
+        OrderService service = BasicFactory.getFactory().getService(OrderService.class);
         try {
             //1.将订单信息存入Order bean 中
             Order order = new Order();

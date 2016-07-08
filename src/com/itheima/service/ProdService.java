@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.itheima.domain.Product;
 
-public interface ProdService {
+public interface ProdService extends Service{
 
 	/**
 	 * ??????

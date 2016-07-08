@@ -16,7 +16,7 @@ public class ProdListServlet extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        ProdService service = BasicFactory.getFactory().getInstance(ProdService.class);
+        ProdService service = BasicFactory.getFactory().getService(ProdService.class);
         //1.调用Service查询所有商品
         List<Product> list = service.findAllProd();
         //2.将所有商品信息存入request域后带到页面展示
