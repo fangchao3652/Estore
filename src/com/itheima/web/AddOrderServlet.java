@@ -22,7 +22,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
-/**
+/**根据购物车 生成订单
  * Created by Meiling on 2016/7/7.
  */
 @WebServlet(name = "AddOrderServlet")

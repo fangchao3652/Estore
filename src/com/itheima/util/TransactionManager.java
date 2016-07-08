@@ -2,7 +2,6 @@ package com.itheima.util;
 
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 import org.apache.commons.dbutils.DbUtils;
-import org.apache.commons.dbutils.ProxyFactory;
 
 import javax.sql.DataSource;
 import java.lang.reflect.InvocationHandler;
@@ -31,10 +30,12 @@ public class TransactionManager {
             return DaoUtils.getConn();
         }*/
     };
+
+    private static ThreadLocal<Connection> realConn_ThreadLocal = new ThreadLocal<Connection>();
     /**
      * 保存每个线程是否开启过事务
      */
-    private static ThreadLocal<Boolean> flag_local = new ThreadLocal<Boolean>() {
+    private static ThreadLocal<Boolean> flag_ThreadLocal = new ThreadLocal<Boolean>() {
         @Override
         protected Boolean initialValue() {
             return false;
@@ -44,7 +45,30 @@ public class TransactionManager {
     public static void startTran() throws SQLException {
         // conn.setAutoCommit(false);
         // conn_ThreadLocal.get().setAutoCommit(false);
-        flag_local.set(true);
+        flag_ThreadLocal.set(true);
+
+        final Connection conn = source.getConnection();
+        conn.setAutoCommit(false);
+       // System.out.println("autocommit====================="+conn.getAutoCommit());//false
+        realConn_ThreadLocal.set(conn);
+
+        //conn 还要进行一次代理 因为queryrunner底层每执行完一次后 都会关连接  我们的事务又都是基于这一个连接的 前面的把conn关闭后 后面的就不能用这个连接了
+        //所以改造成 开启事务时调用close方法不会真正的关闭，但事务结束还得关，所以再创建一个realConn_ThreadLocal 用于在release时关连接
+        Connection proxConn = (Connection) Proxy.newProxyInstance(conn.getClass().getClassLoader(), conn.getClass().getInterfaces(), new InvocationHandler() {
+            @Override
+            public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+                if ("close".equals(method.getName())) {
+                    return null;
+                } else {
+                    return method.invoke(conn, args);
+                }
+
+            }
+        });
+
+        //System.out.println("proxy autocommit==== ================"+proxConn.getAutoCommit());//false  被代理者之前调用的可以影响代理者
+
+        conn_ThreadLocal.set(proxConn);
     }
 
     public static void commit() {
@@ -68,10 +92,8 @@ public class TransactionManager {
      * @return
      */
     public static DataSource getSource() throws SQLException {
-        if (flag_local.get()) {//开启事务了 返回改造的source
-            final Connection conn = source.getConnection();
-            conn.setAutoCommit(false);
-            conn_ThreadLocal.set(conn);
+        if (flag_ThreadLocal.get()) {//开启事务了 返回改造的source
+
             DataSource proxysource = (DataSource) Proxy.newProxyInstance(source.getClass().getClassLoader(), source.getClass().getInterfaces(), new InvocationHandler() {
                 @Override
                 public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
@@ -90,6 +112,15 @@ public class TransactionManager {
     }
 
     public static void release() {
+        try {
+            realConn_ThreadLocal.get().close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        realConn_ThreadLocal.remove();
         conn_ThreadLocal.remove();
+        flag_ThreadLocal.remove();
+
     }
+
 }
