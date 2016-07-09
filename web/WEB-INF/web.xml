@@ -161,7 +161,7 @@
         <servlet-name>AddOrderServlet</servlet-name>
         <url-pattern>/AddOrderServlet</url-pattern>
     </servlet-mapping>
-   <!--//===========-->
+    <!--//===========-->
     <servlet>
         <servlet-name>OrderListServlet</servlet-name>
         <servlet-class>com.itheima.web.OrderListServlet</servlet-class>
@@ -169,6 +169,15 @@
     <servlet-mapping>
         <servlet-name>OrderListServlet</servlet-name>
         <url-pattern>/OrderListServlet</url-pattern>
+    </servlet-mapping>
+    <!--//===========-->
+    <servlet>
+        <servlet-name>DelOrderServlet</servlet-name>
+        <servlet-class>com.itheima.web.DelOrderServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DelOrderServlet</servlet-name>
+        <url-pattern>/DelOrderServlet</url-pattern>
     </servlet-mapping>
 
     <!--首页-->

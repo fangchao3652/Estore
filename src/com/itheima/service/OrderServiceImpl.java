@@ -13,7 +13,9 @@ import javax.servlet.jsp.tagext.TryCatchFinally;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -102,15 +104,29 @@ public class OrderServiceImpl implements OrderService {
             //-查询当前订单所有的订单项
             List<OrderItem> orderItemList = orderdao.findOrderItems(order.getId());
             //--遍历所有订单项 获取商品id 查询商品list 存入 of
-            List<Product> productList = new ArrayList<Product>();
+            Map<Product, Integer> prodmap = new HashMap<>();
             for (OrderItem orderItem : orderItemList) {
                 String productId = orderItem.getProduct_id();
                 Product product = prodao.findProdById(productId);
-                productList.add(product);
+                prodmap.put(product, orderItem.getBuynum());
             }
-            of.setProductList(productList);
+            of.setProdmap(prodmap);
             ofList.add(of);
         }
         return ofList;
+    }
+
+    @Override
+    public void delOrderById(String orderId) {
+        //1.根据id查询出所有订单项
+        List<OrderItem> list = orderdao.findOrderItems(orderId);
+        //2.将订单项内的商品加回去
+        for (OrderItem orderItem : list) {
+            prodao.addPnum(orderItem.getProduct_id(),orderItem.getBuynum());
+        }
+        //3.删除 订单项
+        orderdao.delOrderItem(orderId);
+        //4.删除订单
+        orderdao.delOrder(orderId);
     }
 }

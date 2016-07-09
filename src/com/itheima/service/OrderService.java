@@ -24,4 +24,12 @@ public interface OrderService extends Service {
      * @param userid
      */
     List<OrderForm> findOrders(int userid);
+
+    /**
+     * 删除 订单
+     *
+     * @param orderId
+     */
+    @Tran
+    void delOrderById(String orderId);
 }
