@@ -2,8 +2,8 @@ package com.itheima.service;
 
 import com.itheima.dao.OrderDao;
 import com.itheima.dao.ProdDao;
-import com.itheima.domain.Order;
-import com.itheima.domain.OrderItem;
+import com.itheima.dao.UserDao;
+import com.itheima.domain.*;
 import com.itheima.factory.BasicFactory;
 import com.itheima.util.DaoUtils;
 import com.itheima.util.TransactionManager;
@@ -12,6 +12,8 @@ import org.apache.commons.dbutils.DbUtils;
 import javax.servlet.jsp.tagext.TryCatchFinally;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -20,6 +22,7 @@ import java.sql.SQLException;
 public class OrderServiceImpl implements OrderService {
     OrderDao orderdao = BasicFactory.getFactory().getDao(OrderDao.class);
     ProdDao prodao = BasicFactory.getFactory().getDao(ProdDao.class);
+    UserDao userDao = BasicFactory.getFactory().getDao(UserDao.class);
 
     @Override
     public void addOrder(Order order) {
@@ -78,5 +81,36 @@ public class OrderServiceImpl implements OrderService {
             e.printStackTrace();
             throw new RuntimeException(e);
         }
+    }
+
+    @Override
+    public List<OrderForm> findOrders(int userid) {
+        List<OrderForm> ofList = new ArrayList<>();
+
+        //1根据id 查询所有订单
+        List<Order> orderList = orderdao.findOrderByUserId(userid);
+
+
+        for (Order order : orderList) {
+            // 2遍历订单 生成of对象 存入list
+            OrderForm of = new OrderForm();
+            of.setOrder(order);//设置订单信息
+            //设置用户名
+            User user = userDao.findUserById(userid);
+            of.setUsername(user.getUsername());
+            //设置商品列表信息
+            //-查询当前订单所有的订单项
+            List<OrderItem> orderItemList = orderdao.findOrderItems(order.getId());
+            //--遍历所有订单项 获取商品id 查询商品list 存入 of
+            List<Product> productList = new ArrayList<Product>();
+            for (OrderItem orderItem : orderItemList) {
+                String productId = orderItem.getProduct_id();
+                Product product = prodao.findProdById(productId);
+                productList.add(product);
+            }
+            of.setProductList(productList);
+            ofList.add(of);
+        }
+        return ofList;
     }
 }

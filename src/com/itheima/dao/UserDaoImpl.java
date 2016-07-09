@@ -145,6 +145,18 @@ public class UserDaoImpl implements UserDao {/*
         }
     }
 
+    @Override
+    public User findUserById(int userid) {
+        try {
+            String sql = "select * from users where id=?";
+            QueryRunner runner = new QueryRunner(TransactionManager.getSource());
+            return runner.query( sql, new BeanHandler<User>(User.class), userid);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+    }
+
 
 }
 

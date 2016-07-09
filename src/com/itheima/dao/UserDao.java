@@ -11,4 +11,6 @@ public interface UserDao extends Dao {
     void addUser(User user);
 
     User finUserByNameAndPsw(String username, String password);
+
+    User findUserById(int userid);
 }
