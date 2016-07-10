@@ -21,7 +21,7 @@ public class DelOrderServlet extends HttpServlet {
         String orderId = request.getParameter("id");
         //2.调用service 删除 订单
         orderService.delOrderById(orderId);
-        //3.回到订单列表
+        //3.回到 订单列表
         request.getRequestDispatcher("/OrderListServlet").forward(request, response);
     }
 

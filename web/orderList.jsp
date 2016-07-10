@@ -16,7 +16,7 @@
 <c:forEach items="${requestScope.list}" var="of">
     <h3> 订单号：${of.order.id} </h3>
     用户名：${of.username}<br>
-    订单金额：${of.order.money}<br>
+    订单金额：${of.order.money }<br>
     支付状态：
     <c:if test="${of.order.paystate==0}">
         <font color="red">未支付</font>
